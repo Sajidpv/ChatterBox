@@ -30,13 +30,6 @@ List demeChatMessages = [
     time: DateTime.now().subtract(const Duration(minutes: 10)),
   ),
   ChatMessage(
-    text: "",
-    messageType: ChatMessageType.video,
-    messageStatus: MessageStatus.viewed,
-    isSender: true,
-    time: DateTime.now().subtract(const Duration(minutes: 5)),
-  ),
-  ChatMessage(
     text: "Did you got it?",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.notSent,

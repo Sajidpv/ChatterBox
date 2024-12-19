@@ -2,7 +2,6 @@ import 'package:chatterbox/features/auth/model/user_model.dart';
 import 'package:chatterbox/features/home/model/message_model.dart';
 import 'package:chatterbox/features/home/view/components/audio_message_component.dart';
 import 'package:chatterbox/features/home/view/components/text_message_component.dart';
-import 'package:chatterbox/features/home/view/components/video_message_component.dart';
 import 'package:flutter/material.dart';
 
 class MessageWidget extends StatelessWidget {
@@ -23,8 +22,7 @@ class MessageWidget extends StatelessWidget {
           return TextMessage(message: message);
         case ChatMessageType.audio:
           return AudioMessage(message: message);
-        case ChatMessageType.video:
-          return const VideoMessage();
+
         default:
           return const SizedBox();
       }
@@ -43,7 +41,10 @@ class MessageWidget extends StatelessWidget {
             ),
             const SizedBox(width: 16.0 / 2),
           ],
-          messageContaint(message),
+          Material(
+              elevation: 1,
+              borderRadius: BorderRadius.circular(10),
+              child: messageContaint(message)),
         ],
       ),
     );

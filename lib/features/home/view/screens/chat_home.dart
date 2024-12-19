@@ -1,14 +1,11 @@
-import 'package:chatterbox/configs/app_configs/chat_types.dart';
 import 'package:chatterbox/configs/app_configs/demo_user_list.dart';
 import 'package:chatterbox/configs/app_themes/colors.dart';
 import 'package:chatterbox/configs/routes/route_names.dart';
-import 'package:chatterbox/configs/utils/extensions.dart';
 import 'package:chatterbox/features/auth/model/user_model.dart';
-import 'package:chatterbox/features/home/view/components/choice_chip.dart';
+import 'package:chatterbox/features/home/view/widgets/active_indicator_widget.dart';
+import 'package:chatterbox/features/home/view/widgets/drawer.dart';
 import 'package:chatterbox/features/home/view/widgets/messag_status_row_widget.dart';
-import 'package:chatterbox/features/home/view_model/home_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ChatsScreen extends StatelessWidget {
   const ChatsScreen({super.key});
@@ -20,6 +17,7 @@ class ChatsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Chats"),
       ),
+      drawer: const AppDrawer(),
       body: Column(
         children: [
           const MessageStatusWidget(
@@ -103,102 +101,6 @@ class ChatCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class FillOutlineButton extends StatelessWidget {
-  const FillOutlineButton({
-    super.key,
-    this.isFilled = true,
-    required this.press,
-    required this.text,
-  });
-
-  final bool isFilled;
-  final VoidCallback press;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: ListView.separated(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: chatStatus.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Consumer<HomeProvider>(
-            builder: (context, provider, _) {
-              return buildChoiceChip(
-                chatStatus[index],
-                statusColors[index],
-                provider.selectedChipIndex == index,
-                (bool selected) {
-                  provider.handleChipSelected(index);
-                },
-              );
-            },
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) => 5.width,
-      ),
-    );
-    // return MaterialButton(
-    //   shape: RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.circular(30),
-    //     side: const BorderSide(color: AppPellet.whiteBackground),
-    //   ),
-    //   elevation: isFilled ? 2 : 0,
-    //   color: isFilled ? AppPellet.whiteBackground : Colors.transparent,
-    //   onPressed: press,
-    //   child: Text(
-    //     text,
-    //     style: TextStyle(
-    //       color: isFilled ? const Color(0xFF1D1D35) : AppPellet.whiteBackground,
-    //       fontSize: 12,
-    //     ),
-    //   ),
-    // );
-  }
-}
-
-class CircleAvatarWithActiveIndicator extends StatelessWidget {
-  const CircleAvatarWithActiveIndicator({
-    super.key,
-    this.image,
-    this.radius = 24,
-    this.isActive,
-  });
-
-  final String? image;
-  final double? radius;
-  final bool? isActive;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        CircleAvatar(
-          radius: radius,
-          backgroundImage: NetworkImage(image!),
-        ),
-        if (isActive!)
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: Container(
-              height: 16,
-              width: 16,
-              decoration: BoxDecoration(
-                color: const Color(0xFF00BF6D),
-                shape: BoxShape.circle,
-                border: Border.all(
-                    color: Theme.of(context).scaffoldBackgroundColor, width: 3),
-              ),
-            ),
-          )
-      ],
     );
   }
 }

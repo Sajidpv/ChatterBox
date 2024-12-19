@@ -5,7 +5,7 @@ List<UserModel> chatsData = [
     name: "Jacob Jones",
     lastMessage: "You’re welcome :)",
     image: "https://i.postimg.cc/4dvVQZxV/user-4.png",
-    time: "5d ago",
+    time: "3m ago",
     isActive: true,
   ),
   UserModel(
@@ -19,7 +19,7 @@ List<UserModel> chatsData = [
     name: "Jenny Wilson",
     lastMessage: "Hope you are doing well...",
     image: "https://i.postimg.cc/g25VYN7X/user-1.png",
-    time: "3m ago",
+    time: "3d ago",
     isActive: false,
   ),
   UserModel(

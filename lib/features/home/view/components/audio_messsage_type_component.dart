@@ -48,11 +48,11 @@ class AudioTypeCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: InkWell(
         onTap: press,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: color.withOpacity(.2),

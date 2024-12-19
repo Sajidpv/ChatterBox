@@ -1,4 +1,5 @@
 import 'package:chatterbox/configs/app_themes/colors.dart';
+import 'package:chatterbox/configs/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 class MessageAttachment extends StatelessWidget {
@@ -16,22 +17,29 @@ class MessageAttachment extends StatelessWidget {
           MessageAttachmentCard(
             iconData: Icons.insert_drive_file,
             title: "Document",
-            press: () {},
+            press: () => context.homeProvider.pickFile(context, [
+              'docx',
+              'txt',
+              'pdf',
+            ]),
           ),
           MessageAttachmentCard(
             iconData: Icons.image,
             title: "Gallary",
-            press: () {},
+            press: () => context.homeProvider.pickFile(context, [
+              'jpg',
+              'png',
+            ]),
           ),
           MessageAttachmentCard(
             iconData: Icons.headset,
             title: "Audio",
-            press: () {},
+            press: () => context.homeProvider.pickFile(context, ['aac', 'mp3']),
           ),
           MessageAttachmentCard(
             iconData: Icons.videocam,
             title: "Video",
-            press: () {},
+            press: () => context.homeProvider.pickFile(context, ['mp4', 'avi']),
           ),
         ],
       ),
