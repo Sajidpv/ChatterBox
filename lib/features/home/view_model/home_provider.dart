@@ -26,6 +26,8 @@ class HomeProvider with ChangeNotifier {
   bool get isAudioRecording => _isAudioRecording;
   late final RecorderController _recorderController;
   final PlayerController _playerController = PlayerController();
+  final TextEditingController _controller = TextEditingController();
+  TextEditingController get controller => _controller;
   Duration _currentDuration = Duration.zero;
   RecorderController get recorderController => _recorderController;
   PlayerController get playerController => _playerController;
@@ -46,6 +48,11 @@ class HomeProvider with ChangeNotifier {
       ..androidOutputFormat = AndroidOutputFormat.mpeg4
       ..iosEncoder = IosEncoder.kAudioFormatMPEG4AAC
       ..sampleRate = 16000;
+  }
+
+  void enterMessage(value) {
+    _controller.text = value;
+    notifyListeners();
   }
 
   void setDuration() {
@@ -210,6 +217,7 @@ class HomeProvider with ChangeNotifier {
   void dispose() {
     _recorderController.dispose();
     _playerController.dispose();
+    _controller.clear();
     super.dispose();
   }
 }

@@ -19,6 +19,10 @@ List demeChatMessages = [
     text: "",
     messageType: ChatMessageType.audio,
     messageStatus: MessageStatus.viewed,
+    isExpanded: true,
+    transcript:
+        'Wanted to place an order for a new items. Here what i need. Want 50 Units of classic leather wallet n black. Next, 30 units of the summer floral dress',
+    orderList: ['Leather Wallet', 'Floral Dress'],
     isSender: false,
     time: DateTime.now().subtract(const Duration(minutes: 20)),
   ),
@@ -26,6 +30,10 @@ List demeChatMessages = [
     text: "",
     messageType: ChatMessageType.audio,
     messageStatus: MessageStatus.viewed,
+    isExpanded: true,
+    transcript:
+        'Wanted to place an order for a new items. Here what i need. Want 50 Units of classic leather wallet n black. Next, 30 units of the summer floral dress',
+    orderList: ['Leather Wallet', 'Floral Dress'],
     isSender: true,
     time: DateTime.now().subtract(const Duration(minutes: 10)),
   ),
