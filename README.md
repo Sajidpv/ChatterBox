@@ -1,4 +1,4 @@
-# chatterbox
+# ChatterBox
 # Chat App with Login and Chat Features
 
 ## Overview
@@ -34,11 +34,7 @@ A simple chat app UI with login functionality and advanced chat features like vo
 - `audio_waveform`: Voice recording.
 - `file_picker`: File attachments.
 
-![WhatsApp Image 2024-12-20 at 15 36 58](https://github.com/user-attachments/assets/456a6bb3-14eb-492b-96b8-9c54f7f8a682)
-![Screenshot_1734687997](https://github.com/user-attachments/assets/7756e600-039c-4595-8aaf-b77ecadfb0b5)
-![WhatsApp Image 2024-12-20 at 15 17 57](https://github.com/user-attachments/assets/05a183c1-b7b3-4a75-9ddf-941e30fb167b)
-![WhatsApp Image 2024-12-20 at 15 17 57 (1)](https://github.com/user-attachments/assets/da4d9742-6653-4395-b5bb-31ce416e3066)
-![WhatsApp Image 2024-12-20 at 15 17 56](https://github.com/user-attachments/assets/3cd511c7-a402-4d9d-a63b-fe039dab8e8a)
+![Image 1](https://github.com/user-attachments/assets/456a6bb3-14eb-492b-96b8-9c54f7f8a682) ![Image 2](https://github.com/user-attachments/assets/7756e600-039c-4595-8aaf-b77ecadfb0b5) ![Image 3](https://github.com/user-attachments/assets/05a183c1-b7b3-4a75-9ddf-941e30fb167b) ![Image 4](https://github.com/user-attachments/assets/da4d9742-6653-4395-b5bb-31ce416e3066) ![Image 5](https://github.com/user-attachments/assets/3cd511c7-a402-4d9d-a63b-fe039dab8e8a)
 
 
 
