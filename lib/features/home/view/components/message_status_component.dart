@@ -8,30 +8,41 @@ class MessageStatusDotComponent extends StatelessWidget {
   const MessageStatusDotComponent({super.key, this.status});
   @override
   Widget build(BuildContext context) {
-    Color dotColor(MessageStatus status) {
-      switch (status) {
-        case MessageStatus.notSent:
-          return AppPellet.redColor;
-        case MessageStatus.notView:
-          return Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.1);
-        case MessageStatus.viewed:
-          return AppPellet.primaryColor;
-        default:
-          return Colors.transparent;
-      }
-    }
-
     return Container(
-      margin: const EdgeInsets.only(left: 16.0 / 2),
-      height: 12,
-      width: 12,
-      decoration: BoxDecoration(
-          color: dotColor(status!), borderRadius: BorderRadius.circular(3)),
+      margin: const EdgeInsets.only(left: 2),
+      height: 18,
+      width: 18,
       child: Icon(
-        status == MessageStatus.notSent ? Icons.close : Icons.done,
-        size: 8,
-        color: Theme.of(context).scaffoldBackgroundColor,
+        _getMessageStatusIcon(status!),
+        size: 14,
+        color: dotColor(status!),
       ),
     );
+  }
+
+  IconData _getMessageStatusIcon(MessageStatus status) {
+    switch (status) {
+      case MessageStatus.notSent:
+        return Icons.refresh;
+      case MessageStatus.viewed:
+        return Icons.done_all;
+      case MessageStatus.notView:
+        return Icons.done;
+      default:
+        return Icons.help;
+    }
+  }
+
+  Color dotColor(MessageStatus status) {
+    switch (status) {
+      case MessageStatus.notSent:
+        return AppPellet.redColor;
+      case MessageStatus.notView:
+        return AppPellet.borderGrey;
+      case MessageStatus.viewed:
+        return AppPellet.primaryColor;
+      default:
+        return Colors.transparent;
+    }
   }
 }

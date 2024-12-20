@@ -1,7 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:audio_waveforms/audio_waveforms.dart';
+import 'package:chatterbox/configs/app_configs/demo_chats.dart';
 import 'package:chatterbox/configs/utils/utils.dart';
+import 'package:chatterbox/features/home/model/message_model.dart';
 import 'package:chatterbox/features/home/view/components/permission_request.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
@@ -9,6 +13,7 @@ import 'package:flutter/material.dart';
 
 class HomeProvider with ChangeNotifier {
   HomeProvider() {
+    messages = demeChatMessages;
     _playerController.onPlayerStateChanged.listen((state) {
       _isPlaying = state == PlayerState.playing;
       notifyListeners();
@@ -19,6 +24,7 @@ class HomeProvider with ChangeNotifier {
   bool _showAttachment = false;
   bool _showOptions = false;
   bool _isAudioRecording = false;
+  List<ChatMessage> messages = [];
   bool _isPlaying = false;
   bool get isPlaying => _isPlaying;
   bool get showAttchment => _showAttachment;
@@ -27,13 +33,19 @@ class HomeProvider with ChangeNotifier {
   late final RecorderController _recorderController;
   final PlayerController _playerController = PlayerController();
   final TextEditingController _controller = TextEditingController();
+  bool _isSearching = false;
+  bool get isSearching => _isSearching;
+  TextEditingController _searchController = TextEditingController();
   TextEditingController get controller => _controller;
+  TextEditingController get searchController => _searchController;
   Duration _currentDuration = Duration.zero;
   RecorderController get recorderController => _recorderController;
   PlayerController get playerController => _playerController;
   Duration get currentDuration => _currentDuration;
   String? get filePath => _filePath;
   String? _filePath;
+  PlatformFile? _pickedFile;
+  PlatformFile? get pickedFile => _pickedFile;
 
   void updateAttachmentState() {
     _showAttachment = !_showAttachment;
@@ -55,11 +67,28 @@ class HomeProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void isSearch() {
+    _isSearching = !_isSearching;
+    searchController.clear();
+    notifyListeners();
+  }
+
   void setDuration() {
     _recorderController.onCurrentDuration.listen((duration) {
       _currentDuration = duration;
       notifyListeners();
     });
+  }
+
+  void sendMessage() {
+    messages.add(ChatMessage(
+        text: _controller.text,
+        time: DateTime.now(),
+        messageType: ChatMessageType.text,
+        messageStatus: MessageStatus.notView,
+        isSender: true));
+    _controller.clear();
+    notifyListeners();
   }
 
   void updateOptionsState() {
@@ -79,41 +108,15 @@ class HomeProvider with ChangeNotifier {
     if (await requestPermissions(context)) {
       FilePickerResult? result = await FilePicker.platform
           .pickFiles(type: FileType.custom, allowedExtensions: fileType);
+      _showAttachment = false;
 
       if (result != null) {
-        PlatformFile file = result.files.first;
-
-        String? fileName = file.name;
-        String? filePath = file.path;
-        String? fileExtension = file.extension;
-
-        // Show a dialog with the file details (for demonstration purposes)
-        showDialog(
-          // ignore: use_build_context_synchronously
-          context: context,
-          builder: (_) => AlertDialog(
-            title: const Text('File Selected'),
-            content: Text(
-              'Name: $fileName\n'
-              'Path: $filePath\n'
-              'Extension: $fileExtension',
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
-              ),
-            ],
-          ),
-        );
-
-        // Use the file's path for further operations like uploading or displaying
+        _pickedFile = result.files.first;
+        notifyListeners();
       } else {
-        // ignore: use_build_context_synchronously
         Utils.snackBar("No file selected.", context);
       }
     } else {
-      // ignore: use_build_context_synchronously
       Utils.snackBar("Permission denied.", context);
     }
   }
@@ -147,30 +150,8 @@ class HomeProvider with ChangeNotifier {
       notifyListeners();
     }
   }
-  // Future<String?> stopRecording() async {
-  //   try {
-  //     if (_recorderController.isRecording) {
-  //       _filePath = await _recorderController.stop();
-
-  //       Utils.toastMessage("Recording stopped. File saved at: $filePath");
-  //       notifyListeners();
-  //       return filePath;
-  //     } else {
-  //       notifyListeners();
-  //       if (kDebugMode) {
-  //         print("Recording is not in progress.");
-  //       }
-  //     }
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print("Error stopping recording: $e");
-  //     }
-  //   }
-  //   return null;
-  // }
 
   Future<void> deleteRecording(String? filePath) async {
-    // Stop the recorder if it's currently recording
     if (_recorderController.isRecording) {
       try {
         await _recorderController.stop();
@@ -185,12 +166,13 @@ class HomeProvider with ChangeNotifier {
       }
     }
 
-    // Delete the file if it exists
     final file = File(filePath ?? '');
     if (await file.exists()) {
       await file.delete();
 
-      Utils.toastMessage("Recording deleted: $filePath");
+      if (kDebugMode) {
+        print("Recording deleted: $filePath");
+      }
       filePath = null;
       clearFields();
       notifyListeners();
@@ -218,6 +200,7 @@ class HomeProvider with ChangeNotifier {
     _recorderController.dispose();
     _playerController.dispose();
     _controller.clear();
+    _searchController.clear();
     super.dispose();
   }
 }

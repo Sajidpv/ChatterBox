@@ -1,6 +1,6 @@
 import 'package:chatterbox/features/home/model/message_model.dart';
 
-List demeChatMessages = [
+List<ChatMessage> demeChatMessages = [
   ChatMessage(
     text: "Hi Michael Knite,",
     messageType: ChatMessageType.text,
@@ -43,6 +43,17 @@ List demeChatMessages = [
     messageStatus: MessageStatus.notSent,
     isSender: true,
     time: DateTime.now().subtract(const Duration(minutes: 2)),
+  ),
+  ChatMessage(
+    text: "",
+    messageType: ChatMessageType.audio,
+    messageStatus: MessageStatus.viewed,
+    isExpanded: false,
+    transcript:
+        'Wanted to place an order for a new items. Here what i need. Want 50 Units of classic leather wallet n black. Next, 30 units of the summer floral dress',
+    orderList: ['Leather Wallet', 'Floral Dress'],
+    isSender: false,
+    time: DateTime.now().subtract(const Duration(minutes: 20)),
   ),
   ChatMessage(
     text: "OK, Got it!",

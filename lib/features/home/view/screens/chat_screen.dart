@@ -1,10 +1,12 @@
+import 'dart:io';
+
 import 'package:chatterbox/configs/app_configs/chat_types.dart';
-import 'package:chatterbox/configs/app_configs/demo_chats.dart';
 import 'package:chatterbox/configs/app_themes/colors.dart';
 import 'package:chatterbox/configs/utils/extensions.dart';
 import 'package:chatterbox/features/auth/model/user_model.dart';
 import 'package:chatterbox/features/home/view/components/audio_messsage_type_component.dart';
 import 'package:chatterbox/features/home/view/components/message_attachment_component.dart';
+import 'package:chatterbox/features/home/view/components/picked_attachment_component.dart';
 import 'package:chatterbox/features/home/view/widgets/chat_appbar_widget.dart';
 import 'package:chatterbox/features/home/view/widgets/chat_audio_recording_widget.dart';
 import 'package:chatterbox/features/home/view/widgets/chat_input_field_widget.dart';
@@ -32,13 +34,15 @@ class MessagesScreen extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: ListView.builder(
-                itemCount: demeChatMessages.length,
-                itemBuilder: (context, index) => MessageWidget(
-                  message: demeChatMessages[index],
-                  user: user,
-                ),
-              ),
+              child: Consumer<HomeProvider>(builder: (context, provider, _) {
+                return ListView.builder(
+                  itemCount: provider.messages.length,
+                  itemBuilder: (context, index) => MessageWidget(
+                    message: provider.messages[index],
+                    user: user,
+                  ),
+                );
+              }),
             ),
           ),
           const ChatInputField(),
@@ -87,6 +91,9 @@ class _ChatInputFieldState extends State<ChatInputField> {
                 ),
                 child: Column(
                   children: [
+                    if (provider.pickedFile != null)
+                      PickedAttachmentComponent(
+                          pickedFile: File(provider.pickedFile!.path ?? '')),
                     if (provider.showAttchment) const MessageAttachment(),
                     if (provider.isAudioRecording)
                       const ChatAudioRecordingWidget()

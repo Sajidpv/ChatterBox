@@ -61,7 +61,7 @@ class ChatInputFieldWidget extends StatelessWidget {
         ChatFieldIconButtonComponent(
           onTap: context.watch<HomeProvider>().controller.text.isEmpty
               ? onMicTap
-              : () {},
+              : () => context.homeProvider.sendMessage(),
           icon: context.watch<HomeProvider>().controller.text.isEmpty
               ? Icons.mic
               : Icons.send,

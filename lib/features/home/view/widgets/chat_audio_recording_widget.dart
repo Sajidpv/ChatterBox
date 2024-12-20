@@ -40,10 +40,7 @@ class _ChatAudioRecordingWidgetState extends State<ChatAudioRecordingWidget> {
             child: provider.recorderController.isRecording
                 ? ChatFieldIconButtonComponent(
                     onTap: () async {
-                      String? filePath = await provider.stopRecording();
-                      if (filePath != null) {
-                        Utils.toastMessage("Recorded file path: $filePath");
-                      }
+                      await provider.stopRecording();
                     },
                     icon: Icons.pause_sharp,
                     iconColor: AppPellet.black,

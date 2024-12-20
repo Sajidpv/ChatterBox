@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:share_plus/share_plus.dart';
 
 class Utils {
   static toastMessage(String message) {
@@ -28,32 +27,5 @@ class Utils {
     final minutes = twoDigits(duration.inMinutes.remainder(60));
     final seconds = twoDigits(duration.inSeconds.remainder(60));
     return '$minutes:$seconds';
-  }
-
-/////////////Share Options////////////////////
-
-  static shareContent({
-    required BuildContext context,
-    String? text,
-    String? subject,
-    List<XFile>? filePaths,
-  }) {
-    final box = context.findRenderObject() as RenderBox?;
-    if (filePaths != null && filePaths.isNotEmpty) {
-      Share.shareXFiles(
-        filePaths,
-        text: text,
-        subject: subject,
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-      );
-    } else if (text != null) {
-      Share.share(
-        text,
-        subject: subject,
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-      );
-    } else {
-      throw ArgumentError('Either text or filePaths must be provided.');
-    }
   }
 }
