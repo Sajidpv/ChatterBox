@@ -10,6 +10,7 @@ A simple chat app UI with login functionality and advanced chat features like vo
 - Login screen for username and password input.
 - Persistent login using local storage to redirect users to the home page automatically.
 
+- APK : https://drive.google.com/file/d/1yhWkQQ4K0SmhWO_Ha_LYpAoWahzJEwz0/view?usp=share_link
 - username : sajidpv@gmail.com
 - password : 123123
 
