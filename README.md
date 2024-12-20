@@ -39,7 +39,7 @@ A simple chat app UI with login functionality and advanced chat features like vo
   <img src="https://github.com/user-attachments/assets/7756e600-039c-4595-8aaf-b77ecadfb0b5" style="margin-right: 10px;" width="200" />
   <img src="https://github.com/user-attachments/assets/05a183c1-b7b3-4a75-9ddf-941e30fb167b" style="margin-right: 10px;" width="200" />
   <img src="https://github.com/user-attachments/assets/da4d9742-6653-4395-b5bb-31ce416e3066" style="margin-right: 10px;" width="200" />
-  <img src="https://github.com/user-attachments/assets/3cd511c7-a402-4d9d-a63b-fe039dab8e8a" width="150" />
+  <img src="https://github.com/user-attachments/assets/3cd511c7-a402-4d9d-a63b-fe039dab8e8a" width="200" />
 </div>
 
 
