@@ -26,7 +26,7 @@ A simple chat app UI with login functionality and advanced chat features like vo
 ## Setup
 1. Clone the repository
 2. Install dependencies
-3. Run the app:
+3. Run the app
 
 
 ## Libraries Used
@@ -39,6 +39,7 @@ A simple chat app UI with login functionality and advanced chat features like vo
   <img src="https://github.com/user-attachments/assets/456a6bb3-14eb-492b-96b8-9c54f7f8a682" style="margin-right: 10px;" width="200" />
   <img src="https://github.com/user-attachments/assets/7756e600-039c-4595-8aaf-b77ecadfb0b5" style="margin-right: 10px;" width="200" />
   <img src="https://github.com/user-attachments/assets/05a183c1-b7b3-4a75-9ddf-941e30fb167b" style="margin-right: 10px;" width="200" />
+    <img src="https://github.com/user-attachments/assets/30ab8f40-253a-470a-ac83-74a67edff57a" style="margin-right: 10px;" width="200" />
   <img src="https://github.com/user-attachments/assets/da4d9742-6653-4395-b5bb-31ce416e3066" style="margin-right: 10px;" width="200" />
   <img src="https://github.com/user-attachments/assets/3cd511c7-a402-4d9d-a63b-fe039dab8e8a" width="200" />
 </div>
